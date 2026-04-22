@@ -7,75 +7,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black:#111110;
-  --white:#ffffff;
-  --off:#FAFAF8;
-  --red:#C8102E;
-  --gold:#A4804A;
-  --gold-light:#C8A978;
-  --g100:#F4F3F0;
-  --g200:#E6E4DF;
-  --g300:#CCCAB4;
-  --g400:#9E9C94;
-  --g600:#5A5850;
-  --g800:#2A2820;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'Inter',system-ui,sans-serif;
-  --max:1180px;
+  --black:#111110; --white:#ffffff; --off:#FAFAF8; --red:#C8102E; --gold:#A4804A; --gold-light:#C8A978;
+  --g100:#F4F3F0; --g200:#E6E4DF; --g300:#CCCAB4; --g400:#9E9C94; --g600:#5A5850; --g800:#2A2820;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --max:1180px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--white);color:var(--black);font-family:var(--sans);font-weight:400;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:var(--gold)}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:999;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--g200);backdrop-filter:blur(16px)}
 .nav-logo{text-decoration:none;display:flex;align-items:center;gap:10px}
 .nav-bar{width:3px;height:26px;background:var(--red)}
-.nav-name{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--black);letter-spacing:0.01em}
-.nav-name em{font-style:italic;color:var(--gold)}
+.nav-name{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--black)}
 .nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a{font-size:10.5px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--g400);text-decoration:none;transition:color 0.2s;position:relative}
-.nav-links a:hover{color:var(--black)}
+.nav-links a{font-size:10.5px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--g400);text-decoration:none}
+.nav-links a:hover{color:var(--red)}
 
 /* HERO */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 480px;align-items:center;padding:80px 52px 60px;gap:40px;background:var(--white);position:relative;overflow:hidden}
-.hero-bg{position:absolute;top:0;right:0;width:42%;height:100%;background:var(--g100);clip-path:polygon(14% 0,100% 0,100% 100%,0% 100%);pointer-events:none}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 480px;align-items:center;padding:80px 52px 60px;gap:40px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;top:0;right:0;width:42%;height:100%;background:var(--g100);clip-path:polygon(14% 0,100% 0,100% 100%,0% 100%);z-index:1}
 .hero-left{position:relative;z-index:3}
-h1.hero-name{font-family:var(--serif);font-size:clamp(50px,5.8vw,82px);font-weight:400;line-height:1;color:var(--black);margin-bottom:20px}
+h1.hero-name{font-family:var(--serif);font-size:clamp(50px,5.8vw,82px);font-weight:400;line-height:1;margin-bottom:20px}
 h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
-
-/* BUTTONS */
-.hero-btns{display:flex;gap:10px;margin-top:30px}
-.btn-solid{padding:12px 28px;background:var(--black);color:var(--white);font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--black);transition:all 0.25s}
-.btn-solid:hover{background:var(--red);border-color:var(--red)}
-.btn-ghost{padding:12px 28px;background:transparent;color:var(--black);font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--g300);transition:all 0.25s}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-role-list{display:flex;flex-direction:column;margin-bottom:32px;position:relative;padding-left:16px;border-left:2px solid var(--red)}
+.hrl-item{padding:9px 0;border-bottom:1px solid var(--g200);font-size:12px;color:var(--g600)}
 
 /* ORBIT */
-.hero-right{position:relative;z-index:3;display:flex;align-items:center;justify-content:center}
+.hero-right{position:relative;z-index:3;display:flex;justify-content:center}
 .orbit{position:relative;width:380px;height:380px}
-.o-ring{position:absolute;top:50%;left:50%;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
-.o-ring-1{width:120px;height:120px;border:1.5px solid rgba(200,16,46,0.35);animation:spin 30s linear infinite}
-.o-center-dot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:var(--red);box-shadow:0 0 14px rgba(200,16,46,0.55);animation:pulse 2.6s ease-in-out infinite}
-.o-line{position:absolute;top:50%;left:50%;height:1px;background:linear-gradient(to right,rgba(164,128,74,0.22),transparent);transform-origin:left center;pointer-events:none}
-.o-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;z-index:10}
+.o-ring{position:absolute;top:50%;left:50%;border-radius:50%;transform:translate(-50%,-50%);border:1px solid rgba(164,128,74,0.15)}
+.o-ring-1{width:120px;height:120px;animation:spin 30s linear infinite}
+.o-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;background:var(--red);border-radius:50%;box-shadow:0 0 14px var(--red)}
+.o-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-decoration:none;z-index:10}
 .o-node-dot{width:12px;height:12px;border-radius:50%;background:var(--white);border:2px solid var(--gold);transition:0.3s}
 .o-node:hover .o-node-dot{background:var(--red);border-color:var(--red)}
-.o-node-label{font-size:8.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--g600);background:rgba(255,255,255,0.8);padding:2px 6px}
+.o-node-label{font-size:8px;font-weight:600;text-transform:uppercase;margin-top:5px;background:white;padding:2px 4px}
 
 /* SECTIONS */
-.sec{padding:100px 52px; opacity:0; transform:translateY(30px); transition: all 0.8s ease-out}
-.sec.in{opacity:1; transform:translateY(0)}
-.sec-inner{max-width:var(--max);margin:0 auto}
-.sh{font-family:var(--serif);font-size:clamp(32px,4vw,48px);font-weight:400;margin-bottom:30px}
+.sec{padding:100px 52px;max-width:var(--max);margin:0 auto}
+.sh{font-family:var(--serif);font-size:clamp(30px,4vw,48px);margin-bottom:40px}
 .sh em{font-style:italic;color:var(--gold)}
 
-/* RESPONSIVE */
-@media(max-width:1100px){#hero{grid-template-columns:1fr}.hero-right{display:none}}
+/* FLIP CARDS */
+.lic-flip{perspective:1200px;width:100%;min-height:450px;cursor:pointer}
+.lic-flip-inner{position:relative;width:100%;height:100%;transition:transform 0.8s;transform-style:preserve-3d}
+.lic-flip:hover .lic-flip-inner{transform:rotateY(180deg)}
+.lic-front, .lic-back{position:absolute;inset:0;backface-visibility:hidden;padding:30px;display:flex;flex-direction:column}
+.lic-front{background:var(--black);color:white}
+.lic-back{background:var(--g100);transform:rotateY(180deg);border:1px solid var(--g200)}
+
 @keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3);opacity:0.6}}
+@media(max-width:1100px){ #hero{grid-template-columns:1fr} .hero-right{display:none} }
 </style>
 </head>
 <body>
@@ -97,88 +80,75 @@ h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
   <div class="hero-bg"></div>
   <div class="hero-left">
     <h1 class="hero-name">Dr. Simone <span>Elias</span></h1>
-    <p style="font-size:18px; color:var(--g600); line-height:1.6; max-width:550px;">AI Innovation Strategist and Doctoral Faculty bridging the gap between leadership development and artificial intelligence.</p>
-    <div class="hero-btns">
-      <a href="#about" class="btn-solid">View Profile</a>
-      <a href="#connect" class="btn-ghost">Collaborate</a>
+    <div class="hero-role-list">
+      <div class="hrl-item">AI Innovation Strategist</div>
+      <div class="hrl-item">Curriculum Architect</div>
+      <div class="hrl-item">Senior Dissertation Chair</div>
     </div>
+    <p style="max-width:500px; line-height:1.6; color:var(--g600)">Scholar practitioner and doctoral faculty bridging the gap between leadership development and AI innovation.</p>
   </div>
   <div class="hero-right">
-    <div class="orbit" id="orbit">
+    <div class="orbit" id="orbit-container">
       <div class="o-ring o-ring-1"></div>
-      <div class="o-center-dot"></div>
+      <div class="o-center"></div>
     </div>
   </div>
 </section>
 
 <section id="about" class="sec">
-  <div class="sec-inner">
-    <h2 class="sh">Bridging <em>Leadership</em> & AI</h2>
-    <p style="font-size:16px; line-height:1.8; color:var(--g600); max-width:800px;">Dr. Simone Elias is a scholar-practitioner specializing in AI Governance. Her work empowers educational leaders to navigate technological shifts ethically and effectively.</p>
-  </div>
-</section>
-
-<section id="projects" class="sec">
-  <div class="sec-inner">
-    <h2 class="sh">Key <em>Initiatives</em></h2>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
-      <div style="padding:30px; background:var(--g100); border-left:3px solid var(--red);">
-        <h3 style="font-family:var(--serif); margin-bottom:10px;">AI Policy Design</h3>
-        <p style="font-size:14px; color:var(--g600);">Creating frameworks for ethical AI adoption in K-12 and Higher Education.</p>
+  <h2 class="sh">Leadership <em>&</em> AI Governance</h2>
+  <div style="display:grid; grid-template-columns:300px 1fr; gap:50px">
+    <div class="lic-flip">
+      <div class="lic-flip-inner">
+        <div class="lic-front">
+          <h4 style="color:var(--gold)">Focus Areas</h4>
+          <p style="margin-top:20px; font-size:14px">01 Leadership Development<br>02 AI Governance<br>03 Curriculum Architecture</p>
+        </div>
+        <div class="lic-back">
+          <h4 style="color:var(--red)">Licensure</h4>
+          <p style="font-size:12px; margin-top:15px">Superintendent / Assistant Superintendent<br>Instructional Technology<br>Digital Literacy</p>
+        </div>
       </div>
-      <div style="padding:30px; background:var(--g100); border-left:3px solid var(--gold);">
-        <h3 style="font-family:var(--serif); margin-bottom:10px;">Doctoral Mentorship</h3>
-        <p style="font-size:14px; color:var(--g600);">Serving as Senior Dissertation Chair for the next generation of scholars.</p>
-      </div>
+    </div>
+    <div>
+      <p style="font-size:18px; line-height:1.8; color:var(--g800)">Dr. Simone Elias specializes in the ethical implementation of AI within educational frameworks. Her work empowers institutions to navigate technological shifts with strategic foresight.</p>
     </div>
   </div>
 </section>
 
-<section id="connect" class="sec" style="background:var(--black); color:var(--white);">
-  <div class="sec-inner">
-    <h2 class="sh" style="color:var(--white);">Let's <em>Connect</em></h2>
-    <p style="margin-bottom:30px; opacity:0.8;">Available for strategic consulting and speaking engagements.</p>
-    <a href="mailto:selias@example.com" class="btn-solid" style="background:var(--white); color:var(--black);">Send Message</a>
-  </div>
-</section>
+<footer style="background:var(--black); color:white; padding:40px; text-align:center">
+  <p style="font-size:12px; opacity:0.5">© 2026 Dr. Simone Elias — AI Innovation Strategist</p>
+</footer>
 
 <script>
-// Build the Orbit
-const orbitData = [
-  {label: 'About', id: 'about', angle: 0, dist: 160},
-  {label: 'Projects', id: 'projects', angle: 90, dist: 160},
-  {label: 'Research', id: 'about', angle: 180, dist: 160},
-  {label: 'Connect', id: 'connect', angle: 270, dist: 160}
+// Orbit Node Injection
+const nodes = [
+  {label: 'About', id: 'about', angle: 0},
+  {label: 'Projects', id: 'projects', angle: 120},
+  {label: 'Connect', id: 'connect', angle: 240}
 ];
 
-const orbit = document.getElementById('orbit');
-orbitData.forEach(d => {
-  const rad = d.angle * (Math.PI / 180);
-  const x = Math.cos(rad) * d.dist;
-  const y = Math.sin(rad) * d.dist;
-
-  const node = document.createElement('a');
-  node.className = 'o-node';
-  node.href = '#' + d.id;
-  node.style.left = `calc(50% + ${x}px)`;
-  node.style.top = `calc(50% + ${y}px)`;
-  node.innerHTML = `<div class="o-node-dot"></div><div class="o-node-label">${d.label}</div>`;
-  orbit.appendChild(node);
+const container = document.getElementById('orbit-container');
+nodes.forEach(n => {
+  const rad = n.angle * (Math.PI / 180);
+  const x = Math.cos(rad) * 160;
+  const y = Math.sin(rad) * 160;
+  const el = document.createElement('a');
+  el.className = 'o-node';
+  el.href = `#${n.id}`;
+  el.style.left = `calc(50% + ${x}px)`;
+  el.style.top = `calc(50% + ${y}px)`;
+  el.innerHTML = `<div class="o-node-dot"></div><div class="o-node-label">${n.label}</div>`;
+  container.appendChild(el);
 });
 
-// Scroll Reveal Logic
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-    }
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
   });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.sec').forEach(section => {
-  observer.observe(section);
 });
 </script>
-
 </body>
 </html>
