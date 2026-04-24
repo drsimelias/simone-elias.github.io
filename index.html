@@ -488,10 +488,13 @@ h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
 }
 .fc-feat-inner{
   width:100%;min-height:310px;position:relative;
-  transition:transform 0.75s cubic-bezier(0.23,1,0.32,1);
+  transition:transform 1.05s cubic-bezier(0.16,1,0.3,1);
   transform-style:preserve-3d;
+  -webkit-transform-style:preserve-3d;
 }
-.fc-featured:hover .fc-feat-inner{transform:rotateY(180deg)}
+.fc-featured:hover .fc-feat-inner,
+.fc-featured:focus-within .fc-feat-inner,
+.fc-featured.flip .fc-feat-inner{transform:rotateY(180deg)}
 .fc-feat-f,.fc-feat-b{
   position:absolute;inset:0;min-height:310px;
   backface-visibility:hidden;-webkit-backface-visibility:hidden;
@@ -557,118 +560,10 @@ h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
   font-size:13px;font-weight:300;line-height:1.85;
   color:rgba(255,255,255,0.8);max-width:760px;
 }
-.project-featured-card{
-  height:320px;
-  margin-bottom:1px;
-  border:1px solid var(--g200);
-  background:var(--white);
-}
-.project-featured-front{
-  display:grid;
-  grid-template-columns:190px 1fr;
-  gap:34px;
-  align-items:center;
-  padding:34px 38px;
-  overflow:hidden;
-  position:relative;
-}
-.project-featured-front::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:3px;
-  background:linear-gradient(to right,var(--red),var(--gold),transparent);
-}
-.project-featured-front::after{
-  content:'AI';
-  position:absolute;
-  right:28px;
-  bottom:-28px;
-  font-family:var(--serif);
-  font-size:130px;
-  font-weight:400;
-  color:rgba(164,128,74,0.06);
-  line-height:1;
-  pointer-events:none;
-}
-.project-featured-left{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  align-items:flex-start;
-}
-.project-featured-num{
-  font-family:var(--serif);
-  font-size:86px;
-  font-weight:400;
-  color:var(--g200);
-  line-height:0.9;
-  letter-spacing:-0.04em;
-}
-.project-featured-badge{
-  font-size:8.5px;
-  font-weight:600;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--white);
-  background:var(--red);
-  padding:6px 12px;
-}
-.project-featured-right{
-  position:relative;
-  z-index:2;
-  max-width:760px;
-}
-.project-featured-title{
-  font-family:var(--serif);
-  font-size:clamp(25px,3vw,38px);
-  font-weight:400;
-  line-height:1.08;
-  color:var(--black);
-  margin-bottom:16px;
-  letter-spacing:-0.01em;
-}
-.project-featured-title em{font-style:italic;color:var(--gold)}
-.project-featured-desc{
-  font-size:13.5px;
-  font-weight:300;
-  line-height:1.8;
-  color:var(--g600);
-  max-width:700px;
-}
-.project-featured-hint{
-  margin-top:22px;
-  display:flex;
-  align-items:center;
-  gap:9px;
-  font-size:9.5px;
-  font-weight:500;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--g400);
-}
-.project-featured-hint-line{width:22px;height:1px;background:var(--gold)}
-.project-featured-back{
-  padding:34px 38px;
-  border-left:2px solid var(--red);
-}
-.project-featured-back-title{
-  font-family:var(--serif);
-  font-size:28px;
-  font-weight:400;
-  line-height:1.18;
-  color:var(--white);
-  margin-bottom:14px;
-}
-.project-featured-back-body{
-  font-size:13px;
-  line-height:1.85;
-  max-width:760px;
-}
+.fc-feat-f,.fc-feat-b{pointer-events:none}
+.fc-feat-b .fcb-link{pointer-events:auto;align-self:flex-start;padding:10px 16px;border:1px solid rgba(200,169,120,0.55);margin-top:22px;background:rgba(200,169,120,0.08);transition:background 0.25s,border-color 0.25s,transform 0.25s}
+.fc-feat-b .fcb-link:hover{background:rgba(200,169,120,0.16);border-color:var(--gold-light);transform:translateY(-1px)}
+.fc-featured:focus{outline:1.5px solid var(--gold);outline-offset:4px}
 .proj-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;background:var(--g200);border:1px solid var(--g200);
@@ -726,117 +621,85 @@ h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
   padding-bottom:2px;transition:border-color 0.2s;
 }
 .fcb-link:hover{border-color:var(--gold-light)}
-.project-featured-card{
-  height:320px;
-  margin-bottom:1px;
-  border:1px solid var(--g200);
-  background:var(--white);
-}
-.project-featured-front{
-  display:grid;
-  grid-template-columns:190px 1fr;
-  gap:34px;
-  align-items:center;
-  padding:34px 38px;
+
+
+/* Featured project interaction override: reliable hover and easy click */
+.fc-featured{
+  min-height:330px;
   overflow:hidden;
-  position:relative;
+  transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
-.project-featured-front::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:3px;
-  background:linear-gradient(to right,var(--red),var(--gold),transparent);
+.fc-featured:hover,
+.fc-featured:focus-within{
+  transform:translateY(-3px);
+  border-color:rgba(164,128,74,0.45);
+  box-shadow:0 18px 48px rgba(0,0,0,0.10);
 }
-.project-featured-front::after{
-  content:'AI';
-  position:absolute;
-  right:28px;
-  bottom:-28px;
-  font-family:var(--serif);
-  font-size:130px;
-  font-weight:400;
-  color:rgba(164,128,74,0.06);
-  line-height:1;
+.fc-feat-inner{
+  min-height:330px;
+  transform:none !important;
+  transition:none !important;
+}
+.fc-featured:hover .fc-feat-inner,
+.fc-featured:focus-within .fc-feat-inner,
+.fc-featured.flip .fc-feat-inner{
+  transform:none !important;
+}
+.fc-feat-f,
+.fc-feat-b{
+  min-height:330px;
+  transform:none !important;
+  backface-visibility:visible !important;
+  -webkit-backface-visibility:visible !important;
+  transition:opacity 0.48s ease, transform 0.48s ease;
+}
+.fc-feat-f{
+  opacity:1;
+  z-index:1;
+  pointer-events:auto;
+}
+.fc-feat-b{
+  opacity:0;
+  z-index:2;
+  pointer-events:none;
+  transform:translateY(12px) !important;
+}
+.fc-featured:hover .fc-feat-f,
+.fc-featured:focus-within .fc-feat-f{
+  opacity:0;
   pointer-events:none;
 }
-.project-featured-left{
-  position:relative;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  align-items:flex-start;
+.fc-featured:hover .fc-feat-b,
+.fc-featured:focus-within .fc-feat-b{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0) !important;
 }
-.project-featured-num{
-  font-family:var(--serif);
-  font-size:86px;
-  font-weight:400;
-  color:var(--g200);
-  line-height:0.9;
-  letter-spacing:-0.04em;
-}
-.project-featured-badge{
-  font-size:8.5px;
-  font-weight:600;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--white);
-  background:var(--red);
-  padding:6px 12px;
-}
-.project-featured-right{
-  position:relative;
-  z-index:2;
-  max-width:760px;
-}
-.project-featured-title{
-  font-family:var(--serif);
-  font-size:clamp(25px,3vw,38px);
-  font-weight:400;
-  line-height:1.08;
-  color:var(--black);
-  margin-bottom:16px;
-  letter-spacing:-0.01em;
-}
-.project-featured-title em{font-style:italic;color:var(--gold)}
-.project-featured-desc{
-  font-size:13.5px;
-  font-weight:300;
-  line-height:1.8;
-  color:var(--g600);
-  max-width:700px;
-}
-.project-featured-hint{
-  margin-top:22px;
-  display:flex;
+.fc-front-link{
+  display:inline-flex;
   align-items:center;
-  gap:9px;
+  align-self:flex-start;
+  margin-top:18px;
+  padding:10px 16px;
+  border:1px solid rgba(164,128,74,0.4);
+  color:var(--gold);
+  text-decoration:none;
   font-size:9.5px;
-  font-weight:500;
+  font-weight:600;
   letter-spacing:0.12em;
   text-transform:uppercase;
-  color:var(--g400);
+  transition:background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
-.project-featured-hint-line{width:22px;height:1px;background:var(--gold)}
-.project-featured-back{
-  padding:34px 38px;
-  border-left:2px solid var(--red);
-}
-.project-featured-back-title{
-  font-family:var(--serif);
-  font-size:28px;
-  font-weight:400;
-  line-height:1.18;
+.fc-front-link:hover{
+  background:var(--black);
+  border-color:var(--black);
   color:var(--white);
-  margin-bottom:14px;
+  transform:translateY(-1px);
 }
-.project-featured-back-body{
-  font-size:13px;
-  line-height:1.85;
-  max-width:760px;
+.fc-feat-b .fcb-link{
+  pointer-events:auto;
+  position:relative;
+  z-index:4;
 }
 
 /* ══════════════════════════════
@@ -918,8 +781,8 @@ h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
 }
 .pfc-f-title em{font-style:italic;color:var(--gold)}
 .pfc-f-desc{
-  font-size:13px;font-weight:300;line-height:1.75;color:var(--g600);
-  flex:1;
+  font-size:14px;font-weight:300;line-height:1.85;color:var(--g600);
+  flex:1;max-width:520px;margin-top:20px;
 }
 .pfc-f-hint{
   margin-top:24px;
@@ -1299,7 +1162,7 @@ section[id]{scroll-margin-top:60px}
         <div class="about-rule"></div>
         <p class="about-p">More recently, Dr. Elias has advanced her scholarship into AI governance and policy, addressing questions of accountability, bias, transparency, and human oversight across K&ndash;12 and higher education contexts.</p>
         <div class="exp-body" id="aMore">
-            <p class="about-p" style="margin-top:11px">As a Senior Dissertation Chair, she mentors scholar practitioners across leadership, equity, and organizational change, guiding doctoral candidates through rigorous applied research on leadership identity and the organizational impact of artificial intelligence.</p>
+          <p class="about-p" style="margin-top:11px">As a Senior Dissertation Chair, she mentors scholar practitioners across leadership, equity, and organizational change, guiding doctoral candidates through rigorous applied research on leadership identity and the organizational impact of artificial intelligence.</p>
           <p class="about-p" style="margin-top:11px">In addition to her academic work, Dr. Elias has collaborated with Apple, Microsoft, Amazon, and Nuance Communications on projects involving machine learning, natural language systems, and product innovation.</p>
         </div>
         <button class="exp-btn" onclick="toggleExp('aMore',this)">
@@ -1328,29 +1191,32 @@ section[id]{scroll-margin-top:60px}
     <p class="proj-desc">Purpose built digital learning environments supporting educators and students across K&ndash;12 in digital literacy, computer science, AI education, and AI governance.</p>
 
     <!-- Featured card 01 — full width -->
-    <div class="fc project-featured-card r">
-      <div class="fc-inner">
+    <div class="fc-featured rs" tabindex="0" aria-label="Human Centered AI Policy Insight Engine project card">
+      <div class="fc-feat-inner">
         <!-- FRONT -->
-        <div class="fc-f project-featured-front">
-          <div class="project-featured-left">
-            <div class="project-featured-num">01</div>
-            <div class="project-featured-badge">Featured</div>
+        <div class="fc-feat-f">
+          <div class="fc-feat-left">
+            <div class="fc-feat-num">01</div>
+            <div class="fc-feat-badge">Featured</div>
           </div>
-          <div class="project-featured-right">
-            <div class="fc-cat">AI Governance &amp; Policy</div>
-            <div class="project-featured-title">Human Centered AI Policy Insight Engine<br><em>for K&ndash;12 District Leaders</em></div>
-            <p class="project-featured-desc">An interactive policy insight tool designed to support K&ndash;12 district leaders in navigating AI governance frameworks, exploring human centered principles, and developing informed, ethical approaches to artificial intelligence adoption in educational systems.</p>
-            <div class="project-featured-hint"><span class="project-featured-hint-line"></span>Hover to explore</div>
+          <div class="fc-feat-right">
+            <div class="fc-cat" style="margin-bottom:8px">AI Governance &amp; Policy</div>
+            <div class="fc-feat-title">Human Centered AI Policy Insight Engine<br><em>for K&ndash;12 District Leaders</em></div>
+            <p class="fc-feat-desc">An interactive policy insight tool designed to support K&ndash;12 district leaders in navigating AI governance frameworks, exploring human centered principles, and developing informed, ethical approaches to artificial intelligence adoption in educational systems.</p>
+            <div class="fc-feat-hint"><span class="fc-feat-hint-line"></span>Hover to explore</div>
+            <a href="https://drsimelias.github.io/Human-Centered-AI-Policy-Insight-Engine-K12-/" target="_blank" class="fc-front-link">Visit Project &rarr;</a>
           </div>
         </div>
         <!-- BACK -->
-        <div class="fc-b project-featured-back">
-          <div>
-            <div class="fcb-cat">AI Governance &amp; Policy</div>
-            <div class="project-featured-back-title">Human Centered AI Policy Insight Engine for K&ndash;12 District Leaders</div>
-            <div class="fcb-body project-featured-back-body">This resource addresses a critical gap in AI governance support for educational leaders. It provides district administrators and K&ndash;12 leaders with structured insight into AI policy frameworks, accountability considerations, transparency principles, and human oversight strategies, grounded in Dr. Elias's research on AI governance in education.</div>
+        <div class="fc-feat-b">
+          <div class="fc-feat-back-inner">
+            <div>
+              <div class="fcb-cat" style="color:var(--gold-light);margin-bottom:10px">AI Governance &amp; Policy</div>
+              <div class="fc-feat-back-title">Human Centered AI Policy Insight Engine for K&ndash;12 District Leaders</div>
+              <p class="fc-feat-back-body">This resource addresses a critical gap in AI governance support for educational leaders. It provides district administrators and K&ndash;12 leaders with structured insight into AI policy frameworks, accountability considerations, transparency principles, and human oversight strategies; grounded in Dr. Elias's research on AI governance in education.</p>
+            </div>
+            <a href="https://drsimelias.github.io/Human-Centered-AI-Policy-Insight-Engine-K12-/" target="_blank" class="fcb-link" style="color:var(--gold-light);border-color:rgba(200,169,120,0.35)">Visit Project &rarr;</a>
           </div>
-          <a href="https://drsimelias.github.io/Human-Centered-AI-Policy-Insight-Engine-K12-/" target="_blank" class="fcb-link">Visit Project &rarr;</a>
         </div>
       </div>
     </div>
@@ -1418,7 +1284,6 @@ section[id]{scroll-margin-top:60px}
           <div class="pfc-f">
             <div>
               <div class="pfc-f-label">Foundational Scholarship</div>
-              <div class="pfc-f-title">Selected<br><em>Publications</em></div>
               <p class="pfc-f-desc">Scholarship spanning organizational and charismatic leadership, distributed leadership theory, mindfulness, culturally responsive teaching, and family engagement through technology.</p>
             </div>
             <div class="pfc-f-hint"><span class="pfc-f-hint-line"></span>Hover to view publications</div>
@@ -1440,7 +1305,6 @@ section[id]{scroll-margin-top:60px}
           <div class="pfc-f">
             <div>
               <div class="pfc-f-label">Recent Scholarship</div>
-              <div class="pfc-f-title">Selected<br><em>Publications</em></div>
               <p class="pfc-f-desc">Recent scholarship on generative AI in education, computational thinking, culturally responsive practice, and the experiences of women and historically marginalized groups in computing.</p>
             </div>
             <div class="pfc-f-hint"><span class="pfc-f-hint-line"></span>Hover to view publications</div>
@@ -1473,7 +1337,6 @@ section[id]{scroll-margin-top:60px}
           <div class="pfc-f">
             <div>
               <div class="pfc-f-label">Earlier Proceedings</div>
-              <div class="pfc-f-title">Selected<br><em>Presentations</em></div>
               <p class="pfc-f-desc">International and national conference presentations spanning leadership theory, hybrid education, innovation in Brazil, and academic mentorship — including the 2013 Graduate Scholar Award.</p>
             </div>
             <div class="pfc-f-hint"><span class="pfc-f-hint-line"></span>Hover to view presentations</div>
@@ -1485,7 +1348,6 @@ section[id]{scroll-margin-top:60px}
             <div class="pres-entry"><div class="pres-entry-title">Enabling innovation in Brazil: An in depth analysis of multinational funding and investment</div><div class="pres-entry-event">Northeastern Rise Conference</div><div class="pres-entry-auth">Elias, S., &amp; Greer, R.</div></div>
             <div class="pres-entry"><div class="pres-entry-title">Leading in times of change</div><div class="pres-entry-event">Prosci U.S. Launch in Brazil</div><div class="pres-entry-auth">Elias, S.</div></div>
             <div class="pres-entry"><div class="pres-entry-title">Leadership in the 21st century</div><div class="pres-entry-event">Journal of Research Initiatives International Conference</div><div class="pres-entry-auth">Elias, S.</div></div>
-            <div class="pres-entry"><div class="pres-entry-title">Designing playful Google Classroom learning spaces for young learners</div><div class="pres-entry-event">University of Maine Summer Technology Institute</div><div class="pres-entry-auth">Elias, S.</div></div>
           </div>
         </div>
       </div>
@@ -1495,16 +1357,16 @@ section[id]{scroll-margin-top:60px}
           <div class="pfc-f">
             <div>
               <div class="pfc-f-label">Recent Proceedings</div>
-              <div class="pfc-f-title">Selected<br><em>Presentations</em></div>
-              <p class="pfc-f-desc">Recent conference work spanning generative AI for multilingual learners, DLCS curriculum innovation, and future ready elementary education.</p>
+              <p class="pfc-f-desc">Recent conference work spanning future ready elementary education, generative AI for multilingual learners, DLCS curriculum innovation, and instructional design.</p>
             </div>
             <div class="pfc-f-hint"><span class="pfc-f-hint-line"></span>Hover to view presentations</div>
           </div>
           <div class="pfc-b">
             <div class="pfc-b-label">Recent Presentations</div>
-            <div class="pres-entry"><div class="pres-entry-title">Future ready elementary DLCS labs for young learners</div><div class="pres-entry-event">Massachusetts DLCS Summit</div><div class="pres-entry-auth">Elias, S. &amp; Coppinger, K.</div></div>
+            <div class="pres-entry"><div class="pres-entry-title">Future ready elementary DLCS labs for young learners</div><div class="pres-entry-event">Massachusetts DLCS Summit</div><div class="pres-entry-auth">Elias, S., &amp; Coppinger, K.</div></div>
             <div class="pres-entry"><div class="pres-entry-title">GenAI for multilingual learners</div><div class="pres-entry-event">Pave Your Path Conference</div><div class="pres-entry-auth">Elias, S., &amp; Flores, M.</div></div>
             <div class="pres-entry"><div class="pres-entry-title">Elevating multilingual writing: Analyzing levels, exploring high impact strategies, and digital integration</div><div class="pres-entry-event">Pave Your Path Conference</div><div class="pres-entry-auth">Elias, S., &amp; Flores, M.</div></div>
+            <div class="pres-entry"><div class="pres-entry-title">Designing playful Google Classroom learning spaces for young learners</div><div class="pres-entry-event">University of Maine Summer Technology Institute</div><div class="pres-entry-auth">Elias, S.</div></div>
             <div class="pres-entry"><div class="pres-entry-title">Enhancing second language learning using bilingual guided meditation</div><div class="pres-entry-event">American Psychological Association Annual Convention</div><div class="pres-entry-auth">Li, C., Cai, Q., &amp; Elias, S.</div></div>
           </div>
         </div>
@@ -1693,6 +1555,22 @@ document.querySelectorAll('.btn-solid, .btn-ghost').forEach(function(btn){
       e.preventDefault();
       var target = document.querySelector(href);
       if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+
+// ── Featured project card click support ──
+document.querySelectorAll('.fc-featured').forEach(function(card){
+  card.addEventListener('click', function(e){
+    if(e.target.closest('a')) return;
+    var link = card.querySelector('.fcb-link, .fc-front-link');
+    if(link) window.open(link.href, '_blank');
+  });
+  card.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      var link = card.querySelector('.fcb-link, .fc-front-link');
+      if(link) window.open(link.href, '_blank');
     }
   });
 });
