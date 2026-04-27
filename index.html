@@ -702,6 +702,18 @@ h1.hero-name span{display:block;font-style:italic;color:var(--gold)}
   z-index:4;
 }
 
+/* Card 10 uses the featured project format while preserving the existing Card 01 divider treatment */
+.fc-featured.studio-card-10{
+  margin-top:1px;
+}
+.fc-featured.studio-card-10 .fc-feat-f::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--red),var(--gold),transparent);
+}
+.fc-featured.studio-card-10 .fc-feat-f::after{
+  content:none;
+}
+
 /* ══════════════════════════════
    RESEARCH
 ══════════════════════════════ */
@@ -1255,6 +1267,37 @@ section[id]{scroll-margin-top:60px}
         <div class="fc-f"><div class="fc-num">09</div><div><div class="fc-cat">Student Facing</div><div class="fc-title">Studio Detectives</div></div></div>
         <div class="fc-b"><div><div class="fcb-cat">Student Facing</div><div class="fcb-body">Interactive student design studio guiding learners through inquiry, problem finding, and idea development, making creative thinking and project based learning visible.</div></div><a href="https://sites.google.com/maine.edu/studio-detectives/home" target="_blank" class="fcb-link">Visit Project &rarr;</a></div>
       </div></div>
+    </div>
+
+    <!-- Featured card 10 — DLCS Studio K–5 Curriculum Dashboard -->
+    <div class="fc-featured studio-card-10 rs" tabindex="0" aria-label="DLCS Studio K to 5 Curriculum Dashboard project card">
+      <div class="fc-feat-inner">
+        <!-- FRONT -->
+        <div class="fc-feat-f">
+          <div class="fc-feat-left">
+            <div class="fc-feat-num">10</div>
+            <div class="fc-feat-badge">Curriculum Studio</div>
+          </div>
+          <div class="fc-feat-right">
+            <div class="fc-cat" style="margin-bottom:8px">K&ndash;5 Curriculum Studio</div>
+            <div class="fc-feat-title">DLCS Studio K&ndash;5 Curriculum Dashboard</div>
+            <p class="fc-feat-desc">A research-aligned, standards-based K&ndash;5 DLCS curriculum studio with 228 lesson cards, grade-level worksheets, curated book spotlights, PBL choices, and complete station plans for every lesson.</p>
+            <div class="fc-feat-hint"><span class="fc-feat-hint-line"></span>Hover to explore</div>
+            <a href="https://drsimelias.github.io/DLCS-Studio-K-5Curriculum-Dashboard/" target="_blank" class="fc-front-link">Visit Project &rarr;</a>
+          </div>
+        </div>
+        <!-- BACK -->
+        <div class="fc-feat-b">
+          <div class="fc-feat-back-inner">
+            <div>
+              <div class="fcb-cat" style="color:var(--gold-light);margin-bottom:10px">K&ndash;5 Curriculum Studio</div>
+              <div class="fc-feat-back-title">DLCS Studio K&ndash;5 Curriculum Dashboard</div>
+              <p class="fc-feat-back-body">This pilot curriculum is designed through the lens of child development research, DLCS learning progressions, and Universal Design for Learning. Every lesson moves from concrete to abstract, exploration to creation, and individual to collaborative.</p>
+            </div>
+            <a href="https://drsimelias.github.io/DLCS-Studio-K-5Curriculum-Dashboard/" target="_blank" class="fcb-link" style="color:var(--gold-light);border-color:rgba(200,169,120,0.35)">Visit Project &rarr;</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
